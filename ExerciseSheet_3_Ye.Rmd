@@ -196,6 +196,47 @@ b)  Using ChatGPT try to understand what the rapply() function does.
     Create an easy example with mock data where the function is used and
     explain it in your words.
 
+The rapply() function in R is a recursive version of the lapply() function. It is designed to apply a specified function to each element of a list or nested list structure, including nested lists within lists.
+
+An example:
+```{r}
+# Create a nested list structure
+nested_list <- list(
+  a = 1,
+  b = list(
+    c = 2,
+    d = list(
+      e = 3,
+      f = 4
+    )
+  ),
+  g = 5
+)
+
+# Define a function to square each numeric element
+square_elements <- function(x) {
+  if (is.numeric(x)) {
+    return(x^2)
+  } else {
+    return(x)
+  }
+}
+
+# Apply the square_elements function using rapply
+result <- rapply(nested_list, square_elements, how = "replace")
+
+result
+
+```
+In the above example, we have a nested list structure called nested_list. It contains numeric elements a, c, e, and f, while b, d, and g are nested lists. We want to square each numeric element within this nested structure.
+
+We define a function called square_elements() that takes an argument x and squares it if it is a numeric value. Otherwise, it returns the original value.
+
+We then use rapply() to apply the square_elements() function to each element of the nested_list. The how = "replace" argument indicates that we want to replace the original elements with the transformed elements.
+The resulting list, stored in the result variable, will have the same structure as the original nested_list, but with the numeric elements squared. The non-numeric elements remain unchanged.
+
+In this example, the rapply() function traverses the nested list structure recursively, applying the specified function to each numeric element encountered. This is useful when we have complex nested data structures and want to apply a function to specific elements throughout the structure, maintaining the same structure in the output.
+
 ## Final Note
 
 Make sure to push all your commits and changes to GitHub before
