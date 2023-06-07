@@ -2,7 +2,9 @@
 title: 'Exercise #3'
 author: "Yifan Ye (12437591)"
 date: "`r Sys.Date()`"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 subtitle: Fortgeschrittene Statistische Software für NF - SS 2022/23
 ---
 
