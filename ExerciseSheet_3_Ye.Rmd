@@ -122,6 +122,12 @@ In 2021, around 11524 babies were born in Munich and the number has decreased to
 
 d)  Add a new column `year` to both datasets which holds the correct
     year for each.
+   
+```{r}
+firstname_2021 <- firstname_2021 %>% mutate(year = 2021)
+firstname_2022 <- firstname_2022 %>% mutate(year = 2022)
+```
+    
 
 e)  Combine both datasets into one using `bind_rows()`.
 
