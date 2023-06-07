@@ -2,6 +2,7 @@
 title: 'Exercise #3'
 author: "Yifan Ye (12437591)"
 date: "`r Sys.Date()`"
+output: pdf_document
 subtitle: Fortgeschrittene Statistische Software für NF - SS 2022/23
 ---
 
@@ -145,13 +146,11 @@ popular_names <- combined_firstname %>%
   summarise(total_count = sum(Anzahl)) %>%
   arrange(desc(total_count))
 
-top10_names <- head(popular_names, 10) %>% 
+popular_names %>%
+  head(10) %>% 
   knitr::kable(
     caption = "Top 10 Most Popular Names in Munich (2021-2022)"
   )
-
-print(top10_names)
-
 ```
 
 ## Exercise 4: Chat GPT + apply (3 points)
