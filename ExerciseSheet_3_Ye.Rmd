@@ -159,7 +159,7 @@ your prompts in addition to the solution
 
 a)  The code below does not work because the wrong apply function has
     been used. Find out which apply function would be correct and why it
-    did not work. Correct the code. Also calculate the rowwise means.
+    did not work. Correct the code. Also calculate the column-wise means.
 
 ###Create a sample data frame
 
@@ -173,6 +173,24 @@ Tax_2020 = c(4800, 4200, 5800, 3700), Tax_2021 = c(5200, 3800, 5900,
 column_means \<- lapply(tax_data\[, -1\], 2, mean)
 
 column_means
+
+The code here is attempting to calculate column-wise means using the lapply() function. However, the usage of lapply() is incorrect in this case because it is a function for applying a function to each element of a list or vector. It is not suitable for calculating column-wise means.
+
+To calculate column-wise means in this scenario, you should use the colMeans() function instead. Here's the corrected code:
+```{r}
+# Create a sample data frame
+tax_data <- data.frame(
+  Name = c("Munich GmbH", "ABC Inc.", "Backpacks 1980", "Bavarian Circus"),
+  Tax_2019 = c(5000, 4000, 6000, 3500),
+  Tax_2020 = c(4800, 4200, 5800, 3700),
+  Tax_2021 = c(5200, 3800, 5900, 3400)
+)
+
+# Calculate column-wise means
+column_means <- colMeans(tax_data[, -1])
+
+column_means
+```
 
 b)  Using ChatGPT try to understand what the rapply() function does.
     Create an easy example with mock data where the function is used and
