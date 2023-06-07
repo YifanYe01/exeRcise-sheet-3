@@ -1,8 +1,8 @@
 ---
-title: "Exercise #3"
-subtitle: "Fortgeschrittene Statistische Software für NF - SS 2022/23"
+title: 'Exercise #3'
 author: "Yifan Ye (12437591)"
 date: "`r Sys.Date()`"
+subtitle: Fortgeschrittene Statistische Software für NF - SS 2022/23
 ---
 
 ## General Remarks
@@ -64,10 +64,14 @@ For this task you will upload your solution to GitHub.
 a)  Create a new repository on GitHub in your account named
     `exeRcise-sheet-3`. Make sure you create a **public repository** so
     we are able to see it for grading. Add the link to the repository
-    below:
+    below: 
+    <https://github.com/YifanYe01/exeRcise-sheet-3.git>
+   
+    
 b)  Push your code to this new repository by copying and executing the
     snippet on github listed under
     `…or push an existing repository from the command line`.
+    
 c)  Regularly push your latest changes to GitHub again and especially do
     so when you are finished with this sheet.
 
@@ -87,9 +91,29 @@ b)  Load the data for both years into R. Check the type of the count
     not numeric? Fix the problem in an appropriate manner, it is OK if
     some of the counts are inaccurate because of this. Explain your
     solution and the repercussions.
+    
+```{r}
+firstname_2022 <- read_csv("open_data_portal_2022.csv")
+firstname_2021 <- read_csv("vornamen_2021.csv")
+is.numeric(firstname_2022$Anzahl)
+is.numeric(firstname_2021$Anzahl)
+```
+```{r}
+library("tidyverse")
+firstname_2021 <- firstname_2021 %>% na_if("4 oder weniger") %>% na.omit(firstname_2021)
+firstname_2021$Anzahl <- as.numeric(firstname_2021$Anzahl)
+typeof(firstname_2021$Anzahl)
+
+firstname_2022 <- firstname_2022 %>% na_if("4 oder weniger") %>% na.omit(firstname_2022)
+firstname_2022$Anzahl <- as.numeric(firstname_2022$Anzahl)
+typeof(firstname_2022$Anzahl)
+```
+
+Explanation: There are several rows in the both data sets with the value "4 oder weniger", that's why the code could not work when I run directly using "as.numeric()". Thus, I have defined all the names with the value "4 oder weniger" as missing value and then removed all rows with missing values and then convert the column "Anzahl" to numeric value.
 
 c)  Calculate the total number of babies born in Munich in 2022
     and 2021. Which year had the bigger baby-boom?
+    
 
 d)  Add a new column `year` to both datasets which holds the correct
     year for each.
